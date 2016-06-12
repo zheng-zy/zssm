@@ -27,4 +27,9 @@ public class UserService implements IUserService {
 		return userMapper.selectByPrimaryKey(userId);
 	}
 
+	@Override
+	public User getUserByLoginName(String loginName) {
+		return userMapper.selectByLoginName(loginName);
+	}
+
 }

@@ -13,25 +13,26 @@
 		</commentGenerator>
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1/db_zssm" userId="root" password="666666">
+			connectionURL="jdbc:mysql://127.0.0.1/db_zssm" userId="root"
+			password="666666">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
 		<javaModelGenerator targetPackage="com.base.generator.entity"
-			targetProject="../src/main/java/">
+			targetProject="src">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成映射文件的包名和位置 -->
 		<sqlMapGenerator targetPackage="com.base.generator.mapper.xml"
-			targetProject="../src/main/java/">
+			targetProject="src">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.base.generator.dao" targetProject="../src/main/java/">
+			targetPackage="com.base.generator.dao" targetProject="src">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
@@ -39,13 +40,13 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<!-- <table tableName="role" domainObjectName="Role"
+		<table tableName="t_role" domainObjectName="Role"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="permission" domainObjectName="Permission"
+		<table tableName="t_permission" domainObjectName="Permission"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table> -->
+			selectByExampleQueryId="false"></table>
 	</context>
 </generatorConfiguration>  

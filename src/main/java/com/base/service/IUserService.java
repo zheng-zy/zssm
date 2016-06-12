@@ -9,4 +9,5 @@ import com.base.generator.entity.User;
 */
 public interface IUserService {
 	public User getUserById(int userId); 
+	public User getUserByLoginName(String loginName);
 }

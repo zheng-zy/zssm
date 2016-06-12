@@ -11,11 +11,42 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
 	<context:component-scan base-package="com.base.controller" />
+
+	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
 	<mvc:annotation-driven />
+
+	<!-- 配置SpringMVC的视图解析器 -->
+	<!-- 其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
+	<mvc:view-controller path="/" view-name="forward:/login.jsp" />
+
 	<mvc:default-servlet-handler />
+
 	<!-- 配置静态资源访问，需要添加 default-servlet-handler annotation-driven -->
 	<mvc:resources mapping="/static/**" location="/static/"
 		order="0" />
+
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/error_fileupload.jsp页面 -->
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">WEB-INF/error_fileupload</prop>
+				<!-- 处理其它异常(包括Controller抛出的) -->
+				<prop key="java.lang.Throwable">WEB-INF/500</prop>
+			</props>
+		</property>
+	</bean>
 
 	<mvc:interceptors>
 		<!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
@@ -41,13 +72,6 @@
 				<ref bean="mappingJacksonHttpMessageConverter" /> <!-- JSON转换器 -->
 			</list>
 		</property>
-	</bean>
-	<!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
 	</bean>
 
 	<!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
@@ -82,5 +106,7 @@
 			</bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+	
+	<import resource="spring-shiro.xml"/>
 
 </beans>  
