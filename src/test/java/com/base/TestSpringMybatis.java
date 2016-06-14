@@ -13,7 +13,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.base.generator.entity.Permission;
+import com.base.generator.entity.Role;
 import com.base.generator.entity.User;
+import com.base.service.IPermissionService;
+import com.base.service.IRoleService;
 import com.base.service.IUserService;
 
 /**
@@ -29,6 +33,10 @@ public class TestSpringMybatis {
 	// private ApplicationContext ac = null;
 	@Resource
 	private IUserService userService = null;
+	@Resource
+	private IRoleService roleService = null;
+	@Resource
+	private IPermissionService permissionService = null;
 
 	// @Before
 	// public void before() {
@@ -41,6 +49,32 @@ public class TestSpringMybatis {
 		User user = userService.getUserById(1);
 		System.out.println(user.getName());
 		logger.info("值：" + user.getName());
+		
+		List<Role> roles = userService.getRolesByUserId(1);
+		System.out.println(roles.size());
+	}
+	
+	@Test
+	public void TestRealm(){
+		String loginName = "admin";
+
+        final User user = userService.getUserByLoginName(loginName);
+        
+        final List<Role> roles = roleService.getRolesByUserId(user.getId());
+        for (Role role: roles){
+        	// 添加角色
+        	System.out.println("添加角色："+role.getSign());
+        	final List<Permission> permissions = permissionService.getPermissionsByRoleId(role.getId());
+        	for (Permission permission: permissions){
+        		// 添加权限
+        		System.out.println("添加权限："+permission.getSign());
+        	}
+        }
+	}
+	@Test
+	public void testAuthentication(){
+		final User authentication = userService.authentication(new User("admin", "123"));
+		System.out.println(authentication);
 	}
 
 }

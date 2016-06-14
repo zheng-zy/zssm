@@ -4,13 +4,13 @@
   <resultMap id="BaseResultMap" type="com.base.generator.entity.Role" >
     <result column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="enname" property="enname" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
     <result column="desc" property="desc" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.base.generator.entity.Role" >
-    insert into t_role (id, name, enname, 
+    insert into t_role (id, name, sign, 
       desc)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{enname,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
       #{desc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.base.generator.entity.Role" >
@@ -22,8 +22,8 @@
       <if test="name != null" >
         name,
       </if>
-      <if test="enname != null" >
-        enname,
+      <if test="sign != null" >
+        sign,
       </if>
       <if test="desc != null" >
         desc,
@@ -36,8 +36,8 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="enname != null" >
-        #{enname,jdbcType=VARCHAR},
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
         #{desc,jdbcType=VARCHAR},

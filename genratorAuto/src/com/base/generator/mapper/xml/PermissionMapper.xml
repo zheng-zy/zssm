@@ -3,15 +3,15 @@
 <mapper namespace="com.base.generator.dao.PermissionMapper" >
   <resultMap id="BaseResultMap" type="com.base.generator.entity.Permission" >
     <result column="id" property="id" jdbcType="INTEGER" />
-    <result column="permissionName" property="permissionname" jdbcType="VARCHAR" />
-    <result column="permissionSign" property="permissionsign" jdbcType="VARCHAR" />
-    <result column="permissionDesc" property="permissiondesc" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sign" property="sign" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insert" parameterType="com.base.generator.entity.Permission" >
-    insert into t_permission (id, permissionName, permissionSign, 
-      permissionDesc)
-    values (#{id,jdbcType=INTEGER}, #{permissionname,jdbcType=VARCHAR}, #{permissionsign,jdbcType=VARCHAR}, 
-      #{permissiondesc,jdbcType=VARCHAR})
+    insert into t_permission (id, name, sign, 
+      desc)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{desc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.base.generator.entity.Permission" >
     insert into t_permission
@@ -19,28 +19,28 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="permissionname != null" >
-        permissionName,
+      <if test="name != null" >
+        name,
       </if>
-      <if test="permissionsign != null" >
-        permissionSign,
+      <if test="sign != null" >
+        sign,
       </if>
-      <if test="permissiondesc != null" >
-        permissionDesc,
+      <if test="desc != null" >
+        desc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="permissionname != null" >
-        #{permissionname,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="permissionsign != null" >
-        #{permissionsign,jdbcType=VARCHAR},
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
       </if>
-      <if test="permissiondesc != null" >
-        #{permissiondesc,jdbcType=VARCHAR},
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

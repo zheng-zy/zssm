@@ -5,7 +5,7 @@ public class Role {
 
     private String name;
 
-    private String enname;
+    private String sign;
 
     private String desc;
 
@@ -25,12 +25,12 @@ public class Role {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getEnname() {
-        return enname;
+    public String getSign() {
+        return sign;
     }
 
-    public void setEnname(String enname) {
-        this.enname = enname == null ? null : enname.trim();
+    public void setSign(String sign) {
+        this.sign = sign == null ? null : sign.trim();
     }
 
     public String getDesc() {

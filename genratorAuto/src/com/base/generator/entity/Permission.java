@@ -3,11 +3,11 @@ package com.base.generator.entity;
 public class Permission {
     private Integer id;
 
-    private String permissionname;
+    private String name;
 
-    private String permissionsign;
+    private String sign;
 
-    private String permissiondesc;
+    private String desc;
 
     public Integer getId() {
         return id;
@@ -17,27 +17,27 @@ public class Permission {
         this.id = id;
     }
 
-    public String getPermissionname() {
-        return permissionname;
+    public String getName() {
+        return name;
     }
 
-    public void setPermissionname(String permissionname) {
-        this.permissionname = permissionname == null ? null : permissionname.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
-    public String getPermissionsign() {
-        return permissionsign;
+    public String getSign() {
+        return sign;
     }
 
-    public void setPermissionsign(String permissionsign) {
-        this.permissionsign = permissionsign == null ? null : permissionsign.trim();
+    public void setSign(String sign) {
+        this.sign = sign == null ? null : sign.trim();
     }
 
-    public String getPermissiondesc() {
-        return permissiondesc;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setPermissiondesc(String permissiondesc) {
-        this.permissiondesc = permissiondesc == null ? null : permissiondesc.trim();
+    public void setDesc(String desc) {
+        this.desc = desc == null ? null : desc.trim();
     }
 }

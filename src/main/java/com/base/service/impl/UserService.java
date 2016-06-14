@@ -1,5 +1,7 @@
 package com.base.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.base.generator.dao.UserMapper;
+import com.base.generator.entity.Role;
 import com.base.generator.entity.User;
 import com.base.service.IUserService;
 
@@ -30,6 +33,16 @@ public class UserService implements IUserService {
 	@Override
 	public User getUserByLoginName(String loginName) {
 		return userMapper.selectByLoginName(loginName);
+	}
+
+	@Override
+	public List<Role> getRolesByUserId(int userId) {
+		return userMapper.getRolesByUserId(userId);
+	}
+
+	@Override
+	public User authentication(User user) {
+		return userMapper.authentication(user);
 	}
 
 }

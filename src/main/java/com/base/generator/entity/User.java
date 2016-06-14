@@ -13,7 +13,16 @@ public class User {
 
     private String locked;
 
-    public Integer getId() {
+    public User() {
+    	
+	}
+    
+	public User(String loginName, String password) {
+		this.loginname = loginName;
+		this.password = password;
+	}
+
+	public Integer getId() {
         return id;
     }
 
