@@ -10,7 +10,7 @@
 
 	<select id="getRolesByUserId" parameterType="int" resultMap="BaseResultMap">
 		SELECT c.`id`, c.`name`, c.`sign`, c.`desc` FROM t_user a LEFT JOIN
-		t_user_role b ON a.`id` = b.`userId` LEFT JOIN t_role c ON b.`roleId`
+		t_user_role b ON a.`id` = b.`userId` INNER JOIN t_role c ON b.`roleId`
 		= c.`id` WHERE a.`id` = #{id}
 	</select>
 
