@@ -22,7 +22,7 @@
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="securityRealm" />
-		<!-- <property name="realms"> <list> <ref bean="securityRealm" /> </list> 
+		<!-- <property name="realms"> <list> <ref bean="securityRealm" /> </list>
 			</property> -->
 	</bean>
 
@@ -48,9 +48,10 @@
 				<!-- 静态资源允许访问 -->
 				/static/** = anon
 				<!-- 登录页允许访问 -->
-				/user/login = anon
+				<!--/user/login = anon-->
 				<!-- 其他资源需要认证 -->
-				/** = authc
+				<!-- /** = authc -->
+				/** = anon
 			</value>
 		</property>
 	</bean>
@@ -60,11 +61,11 @@
 
 	<!-- 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证 -->
 	<!-- 配置以下两个bean即可实现此功能 -->
-	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after 
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after
 		the lifecycleBeanProcessor has run -->
 	<!-- 由于本例中并未使用Shiro注解,故注释掉这两个bean(个人觉得将权限通过注解的方式硬编码在程序中,查看起来不是很方便,没必要使用) -->
-	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
-		depends-on="lifecycleBeanPostProcessor"/> <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> 
+	<!-- <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor"/> <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager"/> </bean> -->
 
 </beans>  
