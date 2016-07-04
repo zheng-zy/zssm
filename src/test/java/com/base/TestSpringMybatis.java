@@ -8,6 +8,8 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,7 +31,8 @@ import com.base.service.IUserService;
 @RunWith(SpringJUnit4ClassRunner.class) // 表示继承了SpringJUnit4ClassRunner类
 @ContextConfiguration(locations = { "classpath:spring-mybatis.xml" })
 public class TestSpringMybatis {
-	private static Logger logger = org.apache.log4j.Logger.getLogger(TestSpringMybatis.class);
+//	private Logger logger = LoggerFactory.getLogger(TestSpringMybatis.class);
+	private static Logger logger = Logger.getLogger(TestSpringMybatis.class);
 	// private ApplicationContext ac = null;
 	@Resource
 	private IUserService userService = null;
@@ -50,8 +53,8 @@ public class TestSpringMybatis {
 		System.out.println(user.getName());
 		logger.info("值：" + user.getName());
 		
-		List<Role> roles = userService.getRolesByUserId(1);
-		System.out.println(roles.size());
+		List<Role> roles = roleService.getRolesByUserId(1);
+		System.out.println("roles：" + roles.size());
 	}
 	
 	@Test

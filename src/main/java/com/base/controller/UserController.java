@@ -2,6 +2,7 @@ package com.base.controller;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,8 @@ import com.base.util.JsonResult;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+	private static Logger logger = Logger.getLogger(UserController.class);
 	
 	@Resource
 	public IUserService userService;
@@ -36,4 +39,12 @@ public class UserController {
 		}
 		return json;
 	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(){
+		logger.info("登录成功") ;
+//		return "redirect:main";
+		return "main";
+	}
+
 }

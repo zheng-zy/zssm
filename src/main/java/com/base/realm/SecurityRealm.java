@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -27,6 +28,8 @@ import com.base.service.IUserService;
  */
 public class SecurityRealm extends AuthenticatingRealm {
 
+    private final static Logger logger = Logger.getLogger(SecurityRealm.class);
+
 	@Resource
 	public IUserService userService;
 
@@ -40,6 +43,7 @@ public class SecurityRealm extends AuthenticatingRealm {
 	 * 为当限前登录的用户授予角色和权
 	 */
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        logger.info("shiro 授权");
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		String loginName = String.valueOf(principals.getPrimaryPrincipal());
 
@@ -62,7 +66,8 @@ public class SecurityRealm extends AuthenticatingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		String loginName = String.valueOf(token.getPrincipal());
+        logger.info("shiro 登录验证");
+        String loginName = String.valueOf(token.getPrincipal());
 		String password = new String((char[]) token.getCredentials());
 		// 通过数据库进行验证
 		final User authentication = userService.authentication(new User(loginName, password));

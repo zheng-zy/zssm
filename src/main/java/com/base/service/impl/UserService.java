@@ -3,7 +3,6 @@ package com.base.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.enterprise.context.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
