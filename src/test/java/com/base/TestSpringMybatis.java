@@ -5,22 +5,18 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.base.generator.entity.Permission;
-import com.base.generator.entity.Role;
-import com.base.generator.entity.User;
-import com.base.service.IPermissionService;
-import com.base.service.IRoleService;
-import com.base.service.IUserService;
+import com.base.modules.sys.entity.Permission;
+import com.base.modules.sys.entity.Role;
+import com.base.modules.sys.entity.User;
+import com.base.modules.sys.service.IPermissionService;
+import com.base.modules.sys.service.IRoleService;
+import com.base.modules.sys.service.IUserService;
+
 
 /**
  * @desc 测试spring跟mybatis整合是否成功
@@ -29,7 +25,7 @@ import com.base.service.IUserService;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class) // 表示继承了SpringJUnit4ClassRunner类
-@ContextConfiguration(locations = { "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring-context.xml", "classpath:spring-context-mybatis.xml" })
 public class TestSpringMybatis {
 //	private Logger logger = LoggerFactory.getLogger(TestSpringMybatis.class);
 	private static Logger logger = Logger.getLogger(TestSpringMybatis.class);
@@ -47,6 +43,11 @@ public class TestSpringMybatis {
 	// userService = (IUserService) ac.getBean("userService");
 	// }
 
+	@Test
+	public void test(){
+		
+	}
+	
 	@Test
 	public void testSpringMybatis() {
 		User user = userService.getUserById(1);

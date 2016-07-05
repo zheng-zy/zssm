@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.base.generator.dao.PermissionMapper">
-	<resultMap id="BaseResultMap" type="com.base.generator.entity.Permission">
+<mapper namespace="com.base.modules.sys.dao.PermissionMapper">
+	<resultMap id="BaseResultMap" type="com.base.modules.sys.entity.Permission">
 		<result column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="sign" property="sign" jdbcType="VARCHAR" />
@@ -15,14 +15,14 @@
 		b.`roleId` = c.`id` WHERE c.`id` = #{id}
 	</select>
 
-	<insert id="insert" parameterType="com.base.generator.entity.Permission">
+	<insert id="insert" parameterType="com.base.modules.sys.entity.Permission">
 		insert into t_permission (id, name, sign,
 		desc)
 		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{sign,jdbcType=VARCHAR},
 		#{desc,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.base.generator.entity.Permission">
+	<insert id="insertSelective" parameterType="com.base.modules.sys.entity.Permission">
 		insert into t_permission
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">

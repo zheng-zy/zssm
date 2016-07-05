@@ -9,30 +9,43 @@
                         http://www.springframework.org/schema/context/spring-context-3.1.xsd    
                         http://www.springframework.org/schema/mvc    
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-
+	<description>Spring MVC Configuration</description>
+	
 	<!-- 加载配置属性文件 -->
-	<context:property-placeholder ignore-unresolvable="true" location="classpath:zssm.properties" />
-
-	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
-	<context:component-scan base-package="com.base.controller" />
-
-	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
-	<mvc:annotation-driven />
-
-	<!-- 配置SpringMVC的视图解析器 -->
-	<!-- 其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<context:property-placeholder ignore-unresolvable="true" location="classpath*:/zssm.properties" />
+	
+    <!--配置springMVC-->
+    <!--1:开启springMVC注解模式-->
+    <!--简化配置
+    （1）自动注册DefautAnnotationHandlerMapping,AnnotationMethodHandlerAdapter
+     (2) 提供一系列：数据绑定，数字和日期的format @NumberFormat，@DataTimeFormat,
+         xml,json默认读写支持
+    -->
+   <mvc:annotation-driven/>
+    <!--2:静态资源默认servlet配置
+    1：加入对静态资源的处理：js，gif,png
+    2:允许使用"/"做整体映射
+    -->
+   <mvc:default-servlet-handler/>
+    <!--3:配置jsp 显示viewResolver-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 		<!-- 这里的配置我的理解是自动给后面action的方法return的字符串加上前缀和后缀，变成一个 可用的url地址 -->
-		<property name="prefix" value="${web.view.prefix}" />
-		<property name="suffix" value="${web.view.suffix}" />
-	</bean>
+		<!-- <property name="prefix" value="${web.view.prefix}" />
+		<property name="suffix" value="${web.view.suffix}" /> -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+    </bean>
+    
+	<!-- <context:component-scan base-package="com.base" /> -->
+	<!-- 4.使用Annotation自动注册Bean,只扫描@Controller -->
+	<!-- base-package 如果多个，用“,”分隔 -->
+	<context:component-scan base-package="com.base" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 
 	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
 	<!--<mvc:view-controller path="/" view-name="forward:/login.jsp" />-->
-
-	<!-- 对静态资源文件的访问， 将无法mapping到Controller的path交给default servlet handler处理 -->
-	<mvc:default-servlet-handler />
 
 	<!-- 配置静态资源访问，需要添加 default-servlet-handler annotation-driven -->
 	<mvc:resources mapping="/static/**" location="/static/" order="0" />
@@ -56,7 +69,7 @@
 		<!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
 		<!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
-		<bean class="com.base.interceptor.AuthIntercepter"></bean>
+		<bean class="com.base.common.interceptor.AuthIntercepter"></bean>
 	</mvc:interceptors>
 
 	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
@@ -84,7 +97,8 @@
 		<!-- 默认编码 -->
 		<property name="defaultEncoding" value="utf-8" />
 		<!-- 文件大小最大值 -->
-		<property name="maxUploadSize" value="${web.maxUploadSize}" />
+		<!-- 上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+		<property name="maxUploadSize" value="10485760" />
 		<!-- 内存中的最大值 -->
 		<property name="maxInMemorySize" value="40960" />
 	</bean>
