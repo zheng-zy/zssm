@@ -45,7 +45,7 @@
 	</context:component-scan>
 
 	<!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-	<!--<mvc:view-controller path="/" view-name="forward:/login.jsp" />-->
+	<mvc:view-controller path="/" view-name="forward:/login.jsp" />
 
 	<!-- 配置静态资源访问，需要添加 default-servlet-handler annotation-driven -->
 	<mvc:resources mapping="/static/**" location="/static/" order="0" />
