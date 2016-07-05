@@ -8,14 +8,17 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -34,6 +37,8 @@ import org.springframework.web.context.WebApplicationContext;
 @Transactional
 public class UserControllerTest {
 
+	private static Logger logger = Logger.getLogger(UserControllerTest.class);
+	
 	@Resource
 	private WebApplicationContext wac;
 
@@ -50,13 +55,22 @@ public class UserControllerTest {
 	@Test
 	public void testGetUserById() throws Exception {
 		// request.setParameter(name, value);
-//		mockMvc.perform(post("/getUserById").param(name, values))
-		mockMvc.perform(post("/user/getUserById")).andExpect(status().isOk()).andDo(print());
+		// mockMvc.perform(post("/getUserById").param(name, values))
+		MvcResult mvcResult = mockMvc.perform(post("/user/getUserById")).andExpect(status().isOk()).andDo(print()).andReturn();
+		logger.info(mvcResult.getResponse().getStatus());
+		logger.info(mvcResult.getResponse().getContentAsString());
 	}
 
 	@Test
 	public void testLogin() {
 		fail("Not yet implemented");
+	}
+
+	@Test
+	// 有些单元测试你不希望回滚
+	@Rollback(false)
+	public void testInsert() throws Exception {
+		mockMvc.perform((post("/insertTest"))).andExpect(status().isOk()).andDo(print());
 	}
 
 }
