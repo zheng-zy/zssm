@@ -56,7 +56,7 @@
 				/mydemo/getVerifyCodeImage=anon
 				/main**=authc
 				/user/info**=authc
-				/admin/listUser**=authc,perms[admin:manage]
+				/admin/listUser**=authc
 				/** = authc
 			</value>
 		</property>
