@@ -8,7 +8,7 @@
 
 	<properties>
 		<!-- spring版本号 -->
-		<!--<spring.version>4.0.2.RELEASE</spring.version>-->
+		<!--<spring.version>4.0.2.RELEASE</spring.version> -->
 		<spring.version>4.1.6.RELEASE</spring.version>
 		<!-- mybatis版本号 -->
 		<mybatis.version>3.3.0</mybatis.version>
@@ -21,32 +21,20 @@
 
 	<dependencies>
 		<dependency>
-			<!--使用junit4，4以上使用注解-->
+			<!--使用junit4，4以上使用注解 -->
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<!-- 表示开发的时候引入，发布的时候不会加载此包 -->
 			<scope>test</scope>
 		</dependency>
-		<!--补全项目依赖-->
-		<!--1:日志，java日志：slf4j,log4j,logback,common-logging
-         使用：slf4j+logBack
-        -->
-		<!--<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.5.6</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.1.1</version>
-		</dependency>-->
+		<!--补全项目依赖 -->
+		<!--1:日志，java日志：slf4j,log4j,logback,common-logging 使用：slf4j+logBack -->
+		<!--<dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.5.6</version> </dependency> <dependency> <groupId>ch.qos.logback</groupId> 
+			<artifactId>logback-core</artifactId> <version>1.1.1</version> </dependency> 
+			<dependency> <groupId>ch.qos.logback</groupId> <artifactId>logback-classic</artifactId> 
+			<version>1.1.1</version> </dependency> -->
 
 		<!-- 日志文件管理包 -->
 		<!-- log start -->
@@ -73,7 +61,7 @@
 		</dependency>
 		<!-- log end -->
 
-		<!--2:数据库相关依赖-->
+		<!--2:数据库相关依赖 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -91,20 +79,20 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<!--DAO框架：MyBatis依赖-->
+		<!--DAO框架：MyBatis依赖 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>${mybatis.version}</version>
 		</dependency>
-		<!--myBatis自身实现的spring整合依赖-->
+		<!--myBatis自身实现的spring整合依赖 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.3</version>
 		</dependency>
 
-		<!--3:Servlet web相关依赖-->
+		<!--3:Servlet web相关依赖 -->
 		<dependency>
 			<groupId>taglibs</groupId>
 			<artifactId>standard</artifactId>
@@ -126,8 +114,8 @@
 			<version>3.1.0</version>
 		</dependency>
 
-		<!--4:spring依赖-->
-		<!--spring核心依赖-->
+		<!--4:spring依赖 -->
+		<!--spring核心依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -138,7 +126,7 @@
 			<artifactId>spring-beans</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!--spring dao层依赖-->
+		<!--spring dao层依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -149,7 +137,7 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!--spring web相关依赖-->
+		<!--spring web相关依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -160,14 +148,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<!--spring test相关依赖-->
+		<!--spring test相关依赖 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!--引入一些工具类-->
+		<!--引入一些工具类 -->
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
@@ -220,12 +208,31 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.7.5</version>
+		</dependency>
+
+
 		<!-- apache工具类 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ckfinder</groupId>
+			<artifactId>apache-ant-zip</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<!-- elasticsearch -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.3.4</version>
 		</dependency>
 	</dependencies>
 
